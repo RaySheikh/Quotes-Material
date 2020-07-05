@@ -1,0 +1,18 @@
+export const UPDATE_USERNAME = "UPDATE_USERNAME";
+export const UPDATE_PASSWORD = "UPDATE_PASSWORD";
+export const UPDATE_LOGIN = "UPDATE_LOGIN";
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
+export const UPDATE_QUOTE = "UPDATE_QUOTE";
+export const UPDATE_AUTHOR = "UPDATE_AUTHOR";
+export const UPDATE_CATAGORY = "UPDATE_CATAGORY";
+
+export const ADD_QUOTE = "ADD_QUOTE";
+export const SET_LOADING = "SET_LOADING";
+
+export const UPDATE_MESSAGE = "UPDATE_MESSAGE";
+export const RESET_CREATEQUOTE = "RESET_CREATEQUOTE";
+
+export const GET_ALLQUOTES = "GET_ALLQUOTES";
+
+export const SWITCH_THEME = "SWITCH_THEME";
