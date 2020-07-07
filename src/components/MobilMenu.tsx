@@ -45,7 +45,7 @@ function a11yProps(index: number) {
 }
 
 const useStyles = makeStyles({
-  switch: { marginTop: 20, float: "right" },
+  switch: { marginTop: 10, float: "right" },
 });
 
 interface Props {
@@ -79,7 +79,7 @@ export default function MobilMenu({ tabsChange, value, children }: Props) {
               <Tab label="Add Quote" icon={<AddCircle />} {...a11yProps(0)} />
             </Tabs>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={1} style={{ right: 0 }}>
             <div className={classes.switch}>
               <ThemeSwitchToggleWithData />
             </div>
