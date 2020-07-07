@@ -53,14 +53,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type Props = {
-  onLogin: () => void;
+interface Props {
+  onLogin: (
+    e: React.SyntheticEvent<HTMLButtonElement | HTMLFormElement>
+  ) => void;
   username: string;
-  onUserChange: () => void;
+  onUserChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   password: string;
-  onPwChange: () => void;
+  onPwChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
   errorMessage: string;
-};
+}
 
 const Login = ({
   onLogin,

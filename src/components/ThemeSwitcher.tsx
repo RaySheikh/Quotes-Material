@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from "react";
+import React, { ReactNode } from "react";
 import {
   orange,
   lightBlue,
@@ -14,8 +14,12 @@ type Props = {
   children: ReactNode;
 };
 
+interface ThemeSwitchState {
+  darkState: boolean;
+  switchTheme: any;
+}
 const ThemeSwitcher = ({ children }: Props) => {
-  const { darkState } = useSelector((state) => ({
+  const { darkState } = useSelector((state: ThemeSwitchState) => ({
     ...state.switchTheme,
   }));
   const palletType = darkState ? "dark" : "light";

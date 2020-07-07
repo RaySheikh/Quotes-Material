@@ -75,7 +75,7 @@ type ThemeProps = {
 const ThemeSwitchToggle = ({ handleThemeChange, darkState }: ThemeProps) => {
   return (
     <FormControlLabel
-      label="Dark"
+      label=""
       control={<IOSSwitch checked={darkState} onChange={handleThemeChange} />}
     />
   );

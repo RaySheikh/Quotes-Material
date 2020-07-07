@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -12,7 +11,14 @@ import Box from "@material-ui/core/Box";
 import { Grid } from "@material-ui/core";
 import ThemeSwitchToggleWithData from "../containers/ThemeToggleWithData";
 
-export function TabPanel(props) {
+interface TabProps {
+  children: ReactNode;
+  value: number;
+  index: number;
+  other?: any;
+}
+//TODO: Remove other
+export function TabPanel(props: TabProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -31,7 +37,7 @@ export function TabPanel(props) {
     </div>
   );
 }
-function a11yProps(index) {
+function a11yProps(index: number) {
   return {
     id: `scrollable-force-tab-${index}`,
     "aria-controls": `scrollable-force-tabpanel-${index}`,
@@ -42,11 +48,11 @@ const useStyles = makeStyles({
   switch: { marginTop: 20, float: "right" },
 });
 
-type Props = {
-  tabsChange: () => void;
-  value: string;
+interface Props {
+  tabsChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
+  value: number;
   children: ReactNode;
-};
+}
 
 export default function MobilMenu({ tabsChange, value, children }: Props) {
   const classes = useStyles();

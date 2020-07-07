@@ -1,10 +1,10 @@
 export default {
-  onUpdate: (registration) => {
+  onUpdate: (registration: any) => {
     registration.unregister().then(() => {
       window.location.reload();
     });
   },
-  onSuccess: (registration) => {
+  onSuccess: (registration: any) => {
     console.info("service worker on success state");
     console.log(registration);
   },

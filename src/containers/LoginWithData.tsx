@@ -8,10 +8,19 @@ import {
 } from "../actions/constants";
 import Login from "../components/Login";
 
+interface LoginState {
+  username: string;
+  password: string;
+  errorMessage: string;
+  loginReducer: any;
+}
+
 const LoginWithData = () => {
-  const { username, password, errorMessage } = useSelector((state) => ({
-    ...state.loginReducer,
-  }));
+  const { username, password, errorMessage } = useSelector(
+    (state: LoginState) => ({
+      ...state.loginReducer,
+    })
+  );
   const dispatch = useDispatch();
   const clearErrorMessage = () => {
     dispatch({
@@ -19,7 +28,9 @@ const LoginWithData = () => {
       payload: "",
     });
   };
-  const onUserChange = (e) => {
+  const onUserChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     dispatch({
       type: UPDATE_USERNAME,
       payload: e.target.value,
@@ -29,7 +40,9 @@ const LoginWithData = () => {
     }
     e.preventDefault();
   };
-  const onPwChange = (e) => {
+  const onPwChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     dispatch({
       type: UPDATE_PASSWORD,
       payload: e.target.value,
@@ -39,7 +52,9 @@ const LoginWithData = () => {
     }
     e.preventDefault();
   };
-  const onLogin = (e) => {
+  const onLogin = (
+    e: React.SyntheticEvent<HTMLButtonElement | HTMLFormElement>
+  ): void => {
     const name = "Ray";
     const pwd = "dreamscometrue";
     if (username === name && password === pwd) {

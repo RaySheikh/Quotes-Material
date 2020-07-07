@@ -3,9 +3,14 @@ import ThemeSwitchToggle from "../components/ThemeSwitchToggle";
 import { useDispatch, useSelector } from "react-redux";
 import { SWITCH_THEME } from "../actions/constants";
 
+type ThemeState = {
+  darkState: boolean;
+  switchTheme: any;
+};
+
 const ThemeSwitchToggleWithData = () => {
   const dispatch = useDispatch();
-  const { darkState } = useSelector((state) => ({
+  const { darkState } = useSelector((state: ThemeState) => ({
     ...state.switchTheme,
   }));
 

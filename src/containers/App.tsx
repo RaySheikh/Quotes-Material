@@ -5,19 +5,24 @@ import MobilMenu from "../components/MobilMenu";
 import { Container, CssBaseline } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { TabPanel } from "../components/MobilMenu";
-import RandomQuote from "../components/RandomQuote";
 import AddQuoteWithData from "./AddQuoteWithData";
 import AllQuotesWithData from "./AllQuotesWithData";
 import ThemeSwitchToggleWithData from "./ThemeToggleWithData";
+import { RandomQuoteWithData } from "./RandomQuoteWithData";
+
+interface LoggedInState {
+  loggedIn: boolean;
+  loginReducer: any;
+}
 
 function App() {
-  const [tabValue, setTabValue] = useState(0);
+  const [tabValue, setTabValue] = useState<number>(0);
 
-  const tabsChange = (event, newValue) => {
+  const tabsChange = (event: React.ChangeEvent<{}>, newValue: number): void => {
     setTabValue(newValue);
   };
 
-  const { loggedIn } = useSelector((state) => ({
+  const { loggedIn } = useSelector((state: LoggedInState) => ({
     ...state.loginReducer,
   }));
 
@@ -25,17 +30,13 @@ function App() {
     if (loggedIn) {
       return (
         <>
-          <MobilMenu
-            loggedIn={loggedIn}
-            tabsChange={tabsChange}
-            value={tabValue}
-          >
+          <MobilMenu tabsChange={tabsChange} value={tabValue}>
             <TabPanel value={tabValue} index={0}>
               <AllQuotesWithData />
             </TabPanel>
             <TabPanel value={tabValue} index={1}>
               <Container maxWidth="xs">
-                <RandomQuote />
+                <RandomQuoteWithData />
               </Container>
             </TabPanel>
             <TabPanel value={tabValue} index={2}>

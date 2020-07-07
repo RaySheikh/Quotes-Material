@@ -1,7 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import CardUi from "./Card";
 
@@ -18,14 +17,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RandomQuote = () => {
+interface Props {
+  quote: string;
+  author: string;
+  catagory: string;
+  onClick: () => void;
+}
+
+const RandomQuote = ({ quote, author, catagory, onClick }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.paper}>
       <form className={classes.form} noValidate>
         <Grid spacing={5} container>
           <Grid item xs={12}>
-            <CardUi catagory="my catagory" quote="test" author="test" />
+            <CardUi catagory={catagory} quote={quote} author={author} />
           </Grid>
           <Grid item xs={12}>
             <Button
@@ -34,8 +40,8 @@ const RandomQuote = () => {
               size="large"
               /*  disabled={loading}
             className={classes.button}
-            onClick={onAdd}
             */
+              onClick={onClick}
               startIcon={<GetAppIcon />}
             >
               Get Random

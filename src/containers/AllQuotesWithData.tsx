@@ -1,17 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import { Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import CardUi from "../components/Card";
 import { GET_ALLQUOTES } from "../actions/constants";
 
+type Quote = {
+  id: "string";
+  body: "string";
+  author: "string";
+  catagory: {
+    name: "string";
+  };
+};
+
+interface AllQuotesState {
+  data: Array<Quote>;
+  fetchQuotes: any;
+}
+
 const AllQuotesWithData = () => {
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => ({
+  const { data } = useSelector((state: AllQuotesState) => ({
     ...state.fetchQuotes,
   }));
   const getQuotes = () => {
-    return (dispatch) => {
+    return (dispatch: any) => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes/AllQuotes", {
         method: "GET",
         headers: {
@@ -35,7 +49,7 @@ const AllQuotesWithData = () => {
 
   return (
     <Grid container spacing={2}>
-      {data.map((e, i) => {
+      {data.map((e: Quote, i: number) => {
         return (
           <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
             <CardUi

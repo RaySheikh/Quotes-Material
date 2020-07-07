@@ -1,10 +1,10 @@
 import React from "react";
 import { Alert, AlertTitle } from "@material-ui/lab";
 
-type Props = {
+interface Props {
   message: string;
-  color?: Severity;
-};
+  color: Severity;
+}
 
 type Severity = "error" | "success" | "info" | "warning" | undefined;
 
@@ -14,7 +14,7 @@ const Message = ({ message, color }: Props) => {
       {message ? (
         <Alert severity={color}>
           <AlertTitle>
-            {color.charAt(0).toUpperCase() + color.slice(1)}
+            {color ? color.charAt(0).toUpperCase() + color.slice(1) : null}
           </AlertTitle>
           {message} — <strong>({new Date().toLocaleTimeString()})</strong>
         </Alert>

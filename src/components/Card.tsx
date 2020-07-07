@@ -32,11 +32,11 @@ const useStyles = makeStyles({
   },
 });
 
-type Props = {
+interface Props {
   quote: string;
   author: string;
   catagory: string;
-};
+}
 
 const CardUi = ({ quote, author, catagory }: Props) => {
   const classes = useStyles();
@@ -46,6 +46,7 @@ const CardUi = ({ quote, author, catagory }: Props) => {
       <Typography className={classes.header} variant="h5" component="h2">
         {catagory}
       </Typography>
+      <hr />
       <CardContent>
         <Typography className={classes.quote} color="textPrimary">
           {quote}

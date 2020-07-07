@@ -11,27 +11,46 @@ import {
 import Message from "../components/Message";
 import AddQuote from "../components/AddQuote";
 
+interface AddQuoteState {
+  quote: string;
+  catagory: string;
+  author: string;
+  loading: boolean;
+  message: string;
+  color: string;
+  createQuote: any;
+  messageBox: any;
+}
+
+//TODO: cleanup createQuote and messageBox, dispatch
+
 const AddQuoteWithData = () => {
   const { quote, catagory, author, loading, message, color } = useSelector(
-    (state) => ({
+    (state: AddQuoteState) => ({
       ...state.createQuote,
       ...state.messageBox,
     })
   );
   const dispatch = useDispatch();
-  const onTextChange = (e) => {
+  const onTextChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     dispatch({
       type: UPDATE_QUOTE,
       payload: e.target.value,
     });
   };
-  const onAuthorChange = (e) => {
+  const onAuthorChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     dispatch({
       type: UPDATE_AUTHOR,
       payload: e.target.value,
     });
   };
-  const onCatagoryChange = (e) => {
+  const onCatagoryChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     dispatch({
       type: UPDATE_CATAGORY,
       payload: e.target.value,
@@ -39,7 +58,7 @@ const AddQuoteWithData = () => {
   };
 
   const addQuote = () => {
-    return (dispatch) => {
+    return (dispatch: any) => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes", {
         method: "POST",
         headers: {

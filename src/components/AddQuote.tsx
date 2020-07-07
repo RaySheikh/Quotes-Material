@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type Props = {
+interface Props {
   onTextChange: (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => void;
@@ -33,7 +33,7 @@ type Props = {
   loading: boolean;
   onAdd: () => void;
   children: ReactNode;
-};
+}
 
 const AddQuote = ({
   onTextChange,
