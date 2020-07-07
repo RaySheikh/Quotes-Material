@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import CardUi from "../components/Card";
 import { GET_ALLQUOTES } from "../actions/constants";
+import { API_KEY } from "../env";
 
 type Quote = {
   id: "string";
@@ -29,7 +30,7 @@ const AllQuotesWithData = () => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes/AllQuotes", {
         method: "GET",
         headers: {
-          "API-KEY": "5c316ab0-32ac-49e4-b3e4-a4f6aeec9a6d",
+          "API-KEY": API_KEY,
           "Content-Type": "application/json",
         },
       })

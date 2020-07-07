@@ -7,6 +7,7 @@ import {
   LOGIN_ERROR,
 } from "../actions/constants";
 import Login from "../components/Login";
+import { Password } from "../env";
 
 interface LoginState {
   username: string;
@@ -21,6 +22,7 @@ const LoginWithData = () => {
       ...state.loginReducer,
     })
   );
+
   const dispatch = useDispatch();
   const clearErrorMessage = () => {
     dispatch({
@@ -56,7 +58,7 @@ const LoginWithData = () => {
     e: React.SyntheticEvent<HTMLButtonElement | HTMLFormElement>
   ): void => {
     const name = "Ray";
-    const pwd = "dreamscometrue";
+    const pwd = Password;
     if (username === name && password === pwd) {
       dispatch({
         type: UPDATE_LOGIN,

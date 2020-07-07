@@ -10,6 +10,7 @@ import {
 } from "../actions/constants";
 import Message from "../components/Message";
 import AddQuote from "../components/AddQuote";
+import { API_KEY } from "../env";
 
 interface AddQuoteState {
   quote: string;
@@ -62,7 +63,7 @@ const AddQuoteWithData = () => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes", {
         method: "POST",
         headers: {
-          "API-KEY": "5c316ab0-32ac-49e4-b3e4-a4f6aeec9a6d",
+          "API-KEY": API_KEY,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
