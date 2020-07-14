@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RandomQuote from "../components/RandomQuote";
 import { GET_RANDOMQUOTE } from "../actions/constants";
 import { useSelector, useDispatch } from "react-redux";
-import { API_KEY } from "../env";
 
 type Quote = {
   id: "string";
@@ -23,17 +22,20 @@ export const RandomQuoteWithData = () => {
   const { quote } = useSelector((state: RandomQuoteState) => ({
     ...state.getRandomQuote,
   }));
+  const [loading, setloading] = useState(false);
   const getRandomQuote = () => {
+    setloading(true);
     return (dispatch: any) => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes/RandomQuote", {
         method: "GET",
         headers: {
-          "API-KEY": API_KEY,
+          "API-KEY": "5c316ab0-32ac-49e4-b3e4-a4f6aeec9a6d",
           "Content-Type": "application/json",
         },
       })
         .then((response) => response.json())
         .then((data) => {
+          setloading(false);
           dispatch({
             type: GET_RANDOMQUOTE,
             payload: data,
@@ -54,6 +56,7 @@ export const RandomQuoteWithData = () => {
       catagory={quote.catagory ? quote.catagory.name : ""}
       quote={quote.body}
       onClick={onClickRandomQuote}
+      loading={loading}
     />
   );
 };
