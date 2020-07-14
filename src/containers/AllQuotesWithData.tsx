@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CardUi from "../components/Card";
 import { GET_ALLQUOTES } from "../actions/constants";
 import Loading from "../components/Loading";
+import { ImageArray } from "../assets/images";
 
 type Quote = {
   id: "string";
@@ -15,12 +16,17 @@ type Quote = {
   };
 };
 
+type imgArray = {
+  url: string;
+}[];
+
 interface AllQuotesState {
   data: Array<Quote>;
   fetchQuotes: any;
 }
 
 const AllQuotesWithData = () => {
+  const [imgArray, setimgArray] = useState([]);
   const dispatch = useDispatch();
   const { data } = useSelector((state: AllQuotesState) => ({
     ...state.fetchQuotes,
@@ -50,6 +56,11 @@ const AllQuotesWithData = () => {
   useEffect(() => {
     dispatch(getQuotes());
   }, []);
+  const getRandomImage = (): any => {
+    let random = Math.floor(Math.random() * ImageArray.length);
+    let item = ImageArray[random];
+    return item;
+  };
 
   return (
     <>
@@ -63,9 +74,9 @@ const AllQuotesWithData = () => {
             return (
               <Grid key={i} item xs={12} sm={6} md={4} lg={3}>
                 <CardUi
+                  image={getRandomImage().url}
                   author={e.author}
                   quote={e.body}
-                  catagory={e.catagory.name}
                 />
               </Grid>
             );

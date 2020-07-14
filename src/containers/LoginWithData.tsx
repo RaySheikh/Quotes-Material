@@ -7,17 +7,17 @@ import {
   LOGIN_ERROR,
 } from "../actions/constants";
 import Login from "../components/Login";
-import { Password } from "../env";
+import { PASSWORD } from "../env";
 
 interface LoginState {
   username: string;
-  password: string;
+  PASSWORD: string;
   errorMessage: string;
   loginReducer: any;
 }
 
 const LoginWithData = () => {
-  const { username, password, errorMessage } = useSelector(
+  const { username, PASSWORD, errorMessage } = useSelector(
     (state: LoginState) => ({
       ...state.loginReducer,
     })
@@ -58,13 +58,13 @@ const LoginWithData = () => {
     e: React.SyntheticEvent<HTMLButtonElement | HTMLFormElement>
   ): void => {
     const name = "Ray";
-    const pwd = Password;
-    if (username === name && password === pwd) {
+    const pwd = PASSWORD;
+    if (username === name && PASSWORD === pwd) {
       dispatch({
         type: UPDATE_LOGIN,
         payload: true,
       });
-    } else if (username || password) {
+    } else if (username || PASSWORD) {
       dispatch({
         type: LOGIN_ERROR,
         payload: "Invalid username or password.",
@@ -82,7 +82,7 @@ const LoginWithData = () => {
       onLogin={onLogin}
       username={username}
       onUserChange={onUserChange}
-      password={password}
+      PASSWORD={PASSWORD}
       onPwChange={onPwChange}
       errorMessage={errorMessage}
     />

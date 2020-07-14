@@ -61,7 +61,7 @@ interface Props {
   onUserChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
-  password: string;
+  PASSWORD: string;
   onPwChange: (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
@@ -72,7 +72,7 @@ const Login = ({
   onLogin,
   username,
   onUserChange,
-  password,
+  PASSWORD,
   onPwChange,
   errorMessage,
 }: Props) => {
@@ -101,7 +101,7 @@ const Login = ({
             autoComplete="off"
           />
           <TextField
-            value={password}
+            value={PASSWORD}
             onChange={onPwChange}
             variant="outlined"
             margin="normal"

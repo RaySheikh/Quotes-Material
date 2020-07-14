@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   quote: string;
   author: string;
-  catagory: string;
   onClick: () => void;
   loading: boolean;
+  image: string;
 }
 
-const RandomQuote = ({ quote, author, catagory, onClick, loading }: Props) => {
+const RandomQuote = ({ quote, author, image, onClick, loading }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.paper}>
@@ -38,7 +38,7 @@ const RandomQuote = ({ quote, author, catagory, onClick, loading }: Props) => {
                 <Loading />
               </div>
             ) : (
-              <CardUi catagory={catagory} quote={quote} author={author} />
+              <CardUi image={image} quote={quote} author={author} />
             )}
           </Grid>
           <Grid item xs={12}>

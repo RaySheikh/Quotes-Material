@@ -26,28 +26,35 @@ function App() {
     ...state.loginReducer,
   }));
 
-  const loginCheck = () => {
-    if (loggedIn) {
-      return (
-        <>
-          <MobilMenu tabsChange={tabsChange} value={tabValue}>
-            <TabPanel value={tabValue} index={0}>
-              <AllQuotesWithData />
-            </TabPanel>
-            <TabPanel value={tabValue} index={1}>
-              <Container maxWidth="xs">
-                <RandomQuoteWithData />
-              </Container>
-            </TabPanel>
-            <TabPanel value={tabValue} index={2}>
-              <Container maxWidth="xs">
+  const loginCheck = (isLoggedIn: boolean) => {
+    /* if (isLoggedIn) { */
+    return (
+      <>
+        <MobilMenu tabsChange={tabsChange} value={tabValue}>
+          <TabPanel value={tabValue} index={0}>
+            <AllQuotesWithData />
+          </TabPanel>
+          <TabPanel value={tabValue} index={1}>
+            <Container maxWidth="xs">
+              <RandomQuoteWithData />
+            </Container>
+          </TabPanel>
+          <TabPanel value={tabValue} index={2}>
+            <Container maxWidth="xs">
+              {isLoggedIn ? (
                 <AddQuoteWithData />
-              </Container>
-            </TabPanel>
-          </MobilMenu>
-        </>
-      );
-    } else {
+              ) : (
+                <div style={{ textAlign: "right", paddingTop: 20 }}>
+                  <ThemeSwitchToggleWithData />
+                  <LoginWithData />
+                </div>
+              )}
+            </Container>
+          </TabPanel>
+        </MobilMenu>
+      </>
+    );
+    /*  } else {
       return (
         <div style={{ marginLeft: 10 }}>
           <Container maxWidth="xs">
@@ -58,13 +65,13 @@ function App() {
           <LoginWithData />
         </div>
       );
-    }
+    } */
   };
 
   return (
     <div style={{ marginTop: 5 }}>
       <CssBaseline />
-      {loginCheck()}
+      {loginCheck(loggedIn)}
     </div>
   );
 }

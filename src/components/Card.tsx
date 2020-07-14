@@ -1,9 +1,9 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import { CardActionArea, CardMedia } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
@@ -35,28 +35,33 @@ const useStyles = makeStyles({
 interface Props {
   quote: string;
   author: string;
-  catagory: string;
+  image: string;
 }
 
-const CardUi = ({ quote, author, catagory }: Props) => {
+const CardUi = ({ quote, author, image }: Props) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
-      <Typography className={classes.header} variant="h5" component="h2">
-        {catagory}
-      </Typography>
-      <hr />
-      <CardContent>
-        <Typography className={classes.quote} color="textPrimary">
-          {quote}
-        </Typography>
-        <br />
-        <Typography className={classes.pos} color="textSecondary">
-          -{author}
-        </Typography>
-      </CardContent>
-      <CardActions></CardActions>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          alt="Contemplative Reptile"
+          height="200"
+          image={image}
+          title="Contemplative Reptile"
+        />
+
+        <CardContent>
+          <Typography className={classes.quote} color="textPrimary">
+            {quote}
+          </Typography>
+          <br />
+          <Typography className={classes.pos} color="textSecondary">
+            -{author}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
     </Card>
   );
 };
