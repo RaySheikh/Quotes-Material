@@ -45,7 +45,6 @@ function App() {
                 <AddQuoteWithData />
               ) : (
                 <div style={{ textAlign: "right", paddingTop: 20 }}>
-                  <ThemeSwitchToggleWithData />
                   <LoginWithData />
                 </div>
               )}
