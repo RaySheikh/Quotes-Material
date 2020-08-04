@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import RandomQuote from "../components/RandomQuote";
 import { GET_RANDOMQUOTE } from "../actions/constants";
 import { useSelector, useDispatch } from "react-redux";
+import { ImageArray } from "../assets/images";
 
 type Quote = {
   id: "string";
@@ -22,7 +23,9 @@ export const RandomQuoteWithData = () => {
   const { quote } = useSelector((state: RandomQuoteState) => ({
     ...state.getRandomQuote,
   }));
+  const [loading, setloading] = useState(false);
   const getRandomQuote = () => {
+    setloading(true);
     return (dispatch: any) => {
       fetch("https://myquotesapi.herokuapp.com/api/Quotes/RandomQuote", {
         method: "GET",
@@ -33,6 +36,7 @@ export const RandomQuoteWithData = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          setloading(false);
           dispatch({
             type: GET_RANDOMQUOTE,
             payload: data,
@@ -47,12 +51,17 @@ export const RandomQuoteWithData = () => {
   const onClickRandomQuote = (): void => {
     dispatch(getRandomQuote());
   };
+  const getRandomNumber = (Num: number) => {
+    const random = Math.floor(Math.random() * Num);
+    return random;
+  };
   return (
     <RandomQuote
       author={quote.author}
-      catagory={quote.catagory ? quote.catagory.name : ""}
+      image={ImageArray[getRandomNumber(ImageArray.length)].url}
       quote={quote.body}
       onClick={onClickRandomQuote}
+      loading={loading}
     />
   );
 };

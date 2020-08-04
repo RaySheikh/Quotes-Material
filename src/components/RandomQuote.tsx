@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, Button } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import CardUi from "./Card";
+import Loading from "./Loading";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -20,18 +21,25 @@ const useStyles = makeStyles((theme) => ({
 interface Props {
   quote: string;
   author: string;
-  catagory: string;
   onClick: () => void;
+  loading: boolean;
+  image: string;
 }
 
-const RandomQuote = ({ quote, author, catagory, onClick }: Props) => {
+const RandomQuote = ({ quote, author, image, onClick, loading }: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.paper}>
       <form className={classes.form} noValidate>
         <Grid spacing={5} container>
           <Grid item xs={12}>
-            <CardUi catagory={catagory} quote={quote} author={author} />
+            {loading ? (
+              <div style={{ marginTop: "9vh", marginBottom: "9vh" }}>
+                <Loading />
+              </div>
+            ) : (
+              <CardUi image={image} quote={quote} author={author} />
+            )}
           </Grid>
           <Grid item xs={12}>
             <Button
